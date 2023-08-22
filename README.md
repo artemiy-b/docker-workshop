@@ -57,6 +57,14 @@ docker logs
 docker run -d --rm -e POSTGRES_PASSWORD=password -p 5432:5432 -v C:\Users\Artemiy\Documents\pg_data:/var/lib/postgresql/data postgres:13
 ```
 
+Для просмотра информации о содержимом образа необходимо выполнить команду 
+```
+docker image inspect postgres
+```
+```
+docker image inspect <название образа>
+```
+
 
 ### Docker compose
 ```
