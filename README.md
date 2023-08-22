@@ -24,29 +24,31 @@ docker run postgres
 ```
 docker run -e POSTGRES_PASSWORD=password postgres
 ```
-
+В терминале видим ошибку - не хватает переменной окружения. Сразу же дается подсказка, как добавить переменную окружения с помощью ключа -e
 ```
 docker run -d -e POSTGRES_PASSWORD=password postgres
 ```
 
-```
-docker pull dbeaver/cloudbeaver
-```
-
+Но как к нему подключиться? Для подключения не из докера необходимо пробросить порт во вне с помощью ключа -p. Первым указывается порт на хосте, вторым порт внутри контейнера
 ```
 docker run -d -e POSTGRES_PASSWORD=password -p 5432:5432 postgres
 ```
 
 Докер контейнеры могут общаться между собой внутри сети самого докера по названиям контейнера в качестве доменного имени, а могут и через сеть хост операционной системы `host.docker.internal`
 
+
+После остановки контейнера они остаются. Для того, чтобы контейнер удалялся можно добавить ключ --rm
 ```
 docker run -d --rm -e POSTGRES_PASSWORD=password -p 5432:5432 postgres
 ```
 
+
+Теперь наш контейнер удалился вместе со всеми данными. Для того, чтобы сохранять данные для переиспользования, можно добавить ключ -v и указать путь на хосте и путь внутри контейнера через двоеточие
 ```
 docker run -d --rm -e POSTGRES_PASSWORD=password -p 5432:5432 -v C:\Users\Artemiy\Documents\pg_data:/var/lib/postgresql/data postgres
 ```
 
+Посмотреть логи можно с помощью команды
 ```
 docker logs
 ```
@@ -55,32 +57,54 @@ docker logs
 docker run -d --rm -e POSTGRES_PASSWORD=password -p 5432:5432 -v C:\Users\Artemiy\Documents\pg_data:/var/lib/postgresql/data postgres:13
 ```
 
+
+### Docker compose
 ```
 docker compose up 
 ```
 
 ```
--d 
+docker compose up -d 
+```
 
-down
+```
+docker compose down
+```
 
-stop
+```
+docker compose stop
+```
 
-down -v    - иногда надо чистить вольюмы
+```
+docker compose down -v    - иногда надо чистить вольюмы
+```
 
 
+###
+
+Запуск контейнера из 1 спринта https://practicum.yandex.ru/learn/data-engineer/courses/dd73421d-bf74-4f2d-9b5f-c45d7d258b00/sprints/125752/topics/3f0a5098-425a-40be-9fff-a1df6bcb5532/lessons/e229854f-9e81-40fc-bb2e-314e17116d42/
+```
 docker run --rm -d -p 7010:8000 --name de-sprint-1-server-local cr.yandex/crp1r8pht0n0gl25aug1/de-sprint-1-v2:latest 
+```
 
+Подключим volume
+```
 docker run -d -v /home/username/de_lessons/sprint1:/s1-lessons --rm -p 7010:8000 --name=de-sprint-1-server-local cr.yandex/crp1r8pht0n0gl25aug1/de-sprint-1-v2:latest
+```
 
+### Очистка ресурсов
 
-
+```
 docker system prune
+```
 
+```
 docker volume prune
 docker volume prune --all
 docker system prune --volumes
 docker system prune --all
+```
 
+```
 docker image prune -a
 ```
