@@ -88,8 +88,9 @@ docker run --rm -d -p 7010:8000 --name de-sprint-1-server-local cr.yandex/crp1r8
 ```
 
 Подключим volume
+Важно, чтобы подключенная директория, была пустой
 ```
-docker run -d -v /home/username/de_lessons/sprint1:/s1-lessons --rm -p 7010:8000 --name=de-sprint-1-server-local cr.yandex/crp1r8pht0n0gl25aug1/de-sprint-1-v2:latest
+docker run -d -v /home/<username>/de_lessons/sprint1:/s1-lessons --rm -p 7010:8000 --name=de-sprint-1-server-local cr.yandex/crp1r8pht0n0gl25aug1/de-sprint-1-v2:latest
 ```
 
 ### Очистка ресурсов
@@ -108,3 +109,5 @@ docker system prune --all
 ```
 docker image prune -a
 ```
+
+В Docker Desktop очистка находится под кнопкой Troubleshoot с жучком рядом с настройками
