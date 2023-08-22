@@ -1,4 +1,4 @@
-### Workshop Docker
+# Workshop Docker
 
 Docker — программное обеспечение для автоматизации развёртывания и управления приложениями в средах с поддержкой контейнеризации, контейнеризатор приложений. Позволяет «упаковать» приложение со всем его окружением и зависимостями в контейнер, который может быть развёрнут на любой Linux-системе, а также предоставляет набор команд для управления этими контейнерами. 
 
@@ -6,36 +6,60 @@ Docker — программное обеспечение для автомати
 
 Для более комфортной работы с cli также желательно иметь базовые навыки работы с терминалом. Основные команды - cd, ls, pwd
 
+
+
+### Запуск контейнеров
 Для запуска контейнера используется команда 
 
 ```docker run <название образа>```
 
 Для примера возьмем postgres
+
 ```
 docker run postgres
+```
+Докер автоматически загрузит образ из https://hub.docker.com/
 
+
+```
 docker run -e POSTGRES_PASSWORD=password postgres
+```
 
+```
 docker run -d -e POSTGRES_PASSWORD=password postgres
+```
 
+```
 docker pull dbeaver/cloudbeaver
+```
 
+```
 docker run -d -e POSTGRES_PASSWORD=password -p 5432:5432 postgres
+```
 
-host.docker.internal
+Докер контейнеры могут общаться между собой внутри сети самого докера по названиям контейнера в качестве доменного имени, а могут и через сеть хост операционной системы `host.docker.internal`
 
+```
 docker run -d --rm -e POSTGRES_PASSWORD=password -p 5432:5432 postgres
+```
 
+```
 docker run -d --rm -e POSTGRES_PASSWORD=password -p 5432:5432 -v C:\Users\Artemiy\Documents\pg_data:/var/lib/postgresql/data postgres
+```
 
+```
 docker logs
+```
 
+```
 docker run -d --rm -e POSTGRES_PASSWORD=password -p 5432:5432 -v C:\Users\Artemiy\Documents\pg_data:/var/lib/postgresql/data postgres:13
+```
 
-
-
+```
 docker compose up 
+```
 
+```
 -d 
 
 down
