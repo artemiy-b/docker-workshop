@@ -67,25 +67,34 @@ docker image inspect <название образа>
 
 
 ### Docker compose
+
+Для запуска используется команда
 ```
 docker compose up 
 ```
+Запуск выполняется для ямла из текущей директории
 
+
+Для запуска в detach режиме необходимо добавить ключ -d
 ```
 docker compose up -d 
 ```
 
+Для остановки и удаления контейнеров используется команда
 ```
 docker compose down
 ```
 
+Для остановки без удаления используется команда
 ```
 docker compose stop
 ```
 
+иногда надо чистить вольюмы, для этого ключик -v
 ```
-docker compose down -v    - иногда надо чистить вольюмы
+docker compose down -v
 ```
+
 
 
 ###
@@ -100,6 +109,7 @@ docker run --rm -d -p 7010:8000 --name de-sprint-1-server-local cr.yandex/crp1r8
 ```
 docker run -d -v /home/<username>/de_lessons/sprint1:/s1-lessons --rm -p 7010:8000 --name=de-sprint-1-server-local cr.yandex/crp1r8pht0n0gl25aug1/de-sprint-1-v2:latest
 ```
+Если директория, которую мы укажем, была не пустой - все файлы, которые в ней должны были быть в образе, как при запуске без вольюма - не появятся
 
 ### Очистка ресурсов
 
